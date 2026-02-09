@@ -1,259 +1,406 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yashwanth Bairu | Developer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #06b6d4; 
-            --bg: #030712; /* Slightly darker for better contrast */
-            --text-muted: #94a3b8;
-            --grid-color: rgba(6, 182, 212, 0.05);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yashwanth Bairu | Developer</title>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-        body {
-            background-color: var(--bg);
-            font-family: 'Inter', sans-serif;
-            color: white;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            position: relative;
-        }
+<style>
 
-        /* --- PROFESSIONAL BACKGROUND ELEMENTS --- */
-        
-        /* 1. Subtle Engineering Grid */
-        .bg-grid {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(var(--grid-color) 1px, transparent 1px),
-                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-            background-size: 50px 50px;
-            mask-image: radial-gradient(circle at center, black, transparent 80%);
-            -webkit-mask-image: radial-gradient(circle at center, black, transparent 80%);
-            z-index: 1;
-        }
+/* ================= THEME VARIABLES ================= */
 
-        /* 2. Slow Moving Ambient Orbs */
-        .orb {
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            filter: blur(120px);
-            z-index: 0;
-            opacity: 0.15;
-            animation: float 20s infinite alternate;
-        }
+:root {
+  --bg: #020617;
+  --bg-elevated: #030712;
 
-        .orb-1 {
-            background: var(--primary);
-            top: -10%;
-            left: -10%;
-        }
+  --primary: #22d3ee;
+  --secondary: #818cf8;
 
-        .orb-2 {
-            background: #4f46e5;
-            bottom: -10%;
-            right: -10%;
-            animation-delay: -5s;
-        }
+  --text-main: #e5e7eb;
+  --text-muted: #94a3b8;
 
-        @keyframes float {
-            from { transform: translate(0, 0); }
-            to { transform: translate(100px, 50px); }
-        }
+  --card: rgba(255,255,255,0.06);
+  --border: rgba(255,255,255,0.12);
 
-        /* --- CONTENT WRAPPER --- */
+  --terminal-bg: rgba(2,6,23,0.9);
+  --terminal-text: #67e8f9;
+}
 
-        .container {
-            position: relative;
-            z-index: 10;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            gap: 70px;
-            max-width: 1100px;
-            width: 90%;
-        }
+[data-theme="light"] {
+  --bg: #f8fafc;
+  --bg-elevated: #ffffff;
 
-        .profile-section {
-            text-align: center;
-            flex-shrink: 0;
-        }
+  --primary: #0f766e;
+  --secondary: #475569;
 
-        .image-ring {
-            position: relative;
-            width: 210px;
-            height: 210px;
-            border-radius: 50%;
-            padding: 8px;
-            background: linear-gradient(135deg, var(--primary), transparent);
-            box-shadow: 0 0 50px rgba(6, 182, 212, 0.2);
-            margin-bottom: 20px;
-        }
+  --text-main: #020617;
+  --text-muted: #475569;
 
-        .profile-img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid var(--bg);
-        }
+  --card: rgba(255,255,255,0.95);
+  --border: rgba(0,0,0,0.08);
 
-        .name-label {
-            font-weight: 700;
-            font-size: 1.2rem;
-            letter-spacing: 0.5px;
-        }
+  --terminal-bg: #f1f5f9;
+  --terminal-text: #0f766e;
+}
 
-        .content-section {
-            flex: 1;
-            max-width: 550px;
-        }
+/* ================= GLOBAL RESET ================= */
 
-        .sub-header {
-            font-size: 0.85rem;
-            color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 12px;
-            font-weight: 600;
-        }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 
-        h1 {
-            font-size: 3.8rem;
-            line-height: 1.1;
-            font-weight: 800;
-            margin-bottom: 30px;
-            letter-spacing: -2px;
-        }
+  transition:
+    background-color 0.45s ease,
+    color 0.45s ease,
+    border-color 0.45s ease,
+    box-shadow 0.45s ease,
+    fill 0.45s ease,
+    stroke 0.45s ease;
+}
 
-        h1 span {
-            display: block;
-            color: white;
-            opacity: 0.9;
-        }
+html, body {
+  height: 100%;
+}
 
-        .description {
-            color: var(--text-muted);
-            line-height: 1.7;
-            margin-bottom: 35px;
-            font-size: 1rem;
-        }
+body {
+  font-family: 'Inter', sans-serif;
+  background: radial-gradient(1200px circle at top, var(--bg-elevated), var(--bg));
+  color: var(--text-main);
+  overflow-x: hidden;
+}
 
-        .insta-btn {
-            display: inline-block;
-            padding: 12px 28px;
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            margin-bottom: 50px;
-        }
+/* ================= THEME TOGGLE BUTTON ================= */
 
-        .insta-btn:hover {
-            background: rgba(6, 182, 212, 0.1);
-            border-color: var(--primary);
-            box-shadow: 0 0 25px rgba(6, 182, 212, 0.2);
-            transform: translateY(-2px);
-        }
+.theme-toggle {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 50;
 
-        .launch-status {
-            width: 100%;
-        }
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
 
-        .status-header {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.9rem;
-            margin-bottom: 12px;
-            color: var(--text-muted);
-        }
+  display: grid;
+  place-items: center;
 
-        .status-header b {
-            color: var(--primary);
-            font-weight: 700;
-        }
+  background: var(--card);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(12px);
 
-        .progress-track {
-            width: 100%;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-        }
+  cursor: pointer;
+}
 
-        .progress-fill {
-            width: 75%;
-            height: 100%;
-            background: var(--primary);
-            box-shadow: 0 0 15px var(--primary);
-            border-radius: 10px;
-        }
+.theme-toggle:hover {
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 25%, transparent);
+}
 
-        @media (max-width: 850px) {
-            .container {
-                flex-direction: column;
-                text-align: center;
-                gap: 40px;
-            }
-            h1 { font-size: 2.5rem; letter-spacing: -1px; }
-            .content-section { width: 100%; }
-        }
-    </style>
+.theme-toggle svg {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  stroke: var(--text-main);
+  stroke-width: 1.8;
+  fill: none;
+  transition: opacity .35s ease, transform .45s ease;
+}
+
+/* Sun visible in dark */
+[data-theme="dark"] .sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+[data-theme="dark"] .moon {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.6);
+}
+
+/* Moon visible in light */
+[data-theme="light"] .sun {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.6);
+}
+[data-theme="light"] .moon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+/* ================= BACKGROUND CANVAS ================= */
+
+canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+/* ================= MAIN CONTENT ================= */
+
+main {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 0;
+}
+
+.card {
+  width: 92%;
+  max-width: 1150px;
+  padding: 60px;
+  border-radius: 28px;
+
+  background: linear-gradient(180deg, var(--card), transparent);
+  backdrop-filter: blur(22px);
+  border: 1px solid var(--border);
+
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 60px;
+}
+
+/* ================= PROFILE ================= */
+
+.profile {
+  text-align: center;
+}
+
+.avatar-ring {
+  width: 220px;
+  height: 220px;
+  margin: 0 auto 24px;
+  padding: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), transparent);
+  box-shadow: 0 0 70px color-mix(in srgb, var(--primary) 35%, transparent);
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid var(--bg);
+}
+
+.name {
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.role {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* ================= TERMINAL ================= */
+
+.terminal {
+  background: var(--terminal-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 20px;
+  font-family: monospace;
+  font-size: 0.85rem;
+  color: var(--terminal-text);
+  margin-bottom: 26px;
+  white-space: pre-wrap;
+  min-height: 64px;
+}
+
+/* ================= CONTENT ================= */
+
+.status {
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-size: clamp(2.6rem, 4vw, 3.6rem);
+  font-weight: 800;
+  margin-bottom: 24px;
+}
+
+.description {
+  max-width: 520px;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+  margin-bottom: 36px;
+}
+
+/* ================= PROGRESS ================= */
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.progress-bar {
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.15);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 75%;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+  .card {
+    grid-template-columns: 1fr;
+    padding: 40px 28px;
+    text-align: center;
+  }
+}
+
+</style>
 </head>
+
 <body>
 
-    <div class="bg-grid"></div>
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+  <!-- Sun -->
+  <svg class="sun" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+  </svg>
 
-    <div class="container">
-        <div class="profile-section">
-            <div class="image-ring">
-                <img src="profile.jpeg" alt="Yashwanth Bairu" class="profile-img">
-            </div>
-            <div class="name-label">Yashwanth Bairu</div>
-        </div>
+  <!-- Moon -->
+  <svg class="moon" viewBox="0 0 24 24">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+  </svg>
+</button>
 
-        <div class="content-section">
-            <div class="sub-header">System Status</div>
-            <h1>Currently Under<br><span>Development</span></h1>
-            
-            <p class="description">
-                Engineering a new digital experience. I'm currently working on my full portfolio to showcase my latest projects. Stay tuned.
-            </p>
+<canvas id="bg"></canvas>
 
-            <a href="https://www.instagram.com/yashwanth_bairu/" target="_blank" class="insta-btn">
-                Follow on Instagram
-            </a>
+<main>
+  <div class="card">
 
-            <div class="launch-status">
-                <div class="status-header">
-                    <span>Estimated Launch: <b>May 1st 2026</b></span>
-                    <span>75%</span>
-                </div>
-                <div class="progress-track">
-                    <div class="progress-fill"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <section class="profile">
+      <div class="avatar-ring">
+        <img src="profile.jpeg" class="avatar" alt="Yashwanth Bairu">
+      </div>
+      <div class="name">Yashwanth Bairu</div>
+      <div class="role">Software Developer</div>
+    </section>
+
+    <section>
+      <div class="terminal" id="terminal"></div>
+
+      <div class="status">System Status</div>
+      <h1>Currently Under<br>Development</h1>
+
+      <p class="description">
+        Building a modern, refined portfolio experience with
+        smooth interactions and production-grade UI engineering.
+      </p>
+
+      <div class="progress-header">
+        <span>Estimated Launch <b>May 1, 2026</b></span>
+        <span>75%</span>
+      </div>
+
+      <div class="progress-bar">
+        <div class="progress-fill"></div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<script>
+/* Theme Toggle */
+function toggleTheme() {
+  const root = document.documentElement;
+  root.dataset.theme =
+    root.dataset.theme === 'dark' ? 'light' : 'dark';
+}
+
+/* Terminal Typing */
+const lines = [
+  "yash@portfolio:~$ booting system...",
+  "✓ UI engine loaded",
+  "✓ Theme system ready",
+  "✓ Portfolio under development"
+];
+
+const terminal = document.getElementById('terminal');
+let line = 0, char = 0;
+
+(function type() {
+  if (line < lines.length) {
+    if (char < lines[line].length) {
+      terminal.textContent += lines[line][char++];
+    } else {
+      terminal.textContent += "\n";
+      line++; char = 0;
+    }
+    setTimeout(type, 26);
+  }
+})();
+
+/* Canvas Background */
+const canvas = document.getElementById('bg');
+const ctx = canvas.getContext('2d');
+let w, h, dots;
+
+function resize() {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+  dots = Array.from({ length: 80 }, () => ({
+    x: Math.random() * w,
+    y: Math.random() * h,
+    r: Math.random() * 2 + 0.5,
+    dx: Math.random() * 0.4,
+    dy: Math.random() * 0.4
+  }));
+}
+
+function animate() {
+  ctx.clearRect(0, 0, w, h);
+  dots.forEach(d => {
+    d.x += d.dx;
+    d.y += d.dy;
+    if (d.x > w || d.y > h) {
+      d.x = 0;
+      d.y = Math.random() * h;
+    }
+    ctx.beginPath();
+    ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(100,116,139,0.25)';
+    ctx.fill();
+  });
+  requestAnimationFrame(animate);
+}
+
+window.addEventListener('resize', resize);
+resize();
+animate();
+</script>
 
 </body>
 </html>
